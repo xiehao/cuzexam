@@ -1,0 +1,391 @@
+\documentclass[]{cuzexam}
+
+% =================================================
+%       PDF信息
+% =================================================
+% PDF信息里的标题栏
+\title{xxxx学期xxx期末考试x卷}
+% PDF信息里的作者栏
+\author{无名}
+% PDF信息里的主题
+\cuzsubject{无题}
+% PDF信息里的关键词
+\cuzkeywords{xxx; 期末}
+
+% =================================================
+%       试卷头信息
+% =================================================
+% 学年信息
+\cuzacademicyear{20ab—20cd}
+% 学期信息
+\cuzsemester{z}
+% 课程名称
+\cuzcourse{\LaTeX{}入门}
+% 任课教师
+\cuzlecturers{无名甲、无名乙、无名}
+% 考试类型，如：考试/考察
+\cuzexamtype{考试}
+% 试卷类型，如：A/B
+\cuzpapertype{X}
+% 计分表中大题的数目
+\cuznumberparts{8}
+
+\begin{document}
+
+% 生成试卷表头
+\makehead
+
+\begin{extracomment}
+    \textbf{可选语句：“注意：请将答案写在答题纸上，在试卷内作答无效。”}
+\end{extracomment}
+
+\makepart{判断题}{对的划\yes，错的划\no；共~5~小题，每小题~2~分，共~10~分}
+
+\begin{problem}
+    这是一个正确的结论。\pickout{\yes}
+\end{problem}
+
+\begin{problem}
+    这是一个错误的结论。\pickout{\no}
+\end{problem}
+
+\begin{problem}
+    这是一个正确的结论。\pickout{\yes}
+\end{problem}
+
+\begin{problem}
+    这是一个错误的结论。\pickout{\no}
+\end{problem}
+
+\begin{problem}
+    这是一个正确的结论。\pickout{\yes}
+\end{problem}
+
+% 用于在答题纸上生成对应区域，格式随意，此处画成表格
+\begin{sheetcontents}
+    \begin{tabularx}{\textwidth}{|*{5}{X<{\centering}|}}
+        \hline
+        \repeatcell{5}{text=#1} \\
+        \hline
+        \pickoutx{\yes} & \pickoutx{\no} & \pickoutx{\yes} & \pickoutx{\no} & \pickoutx{\yes} \\
+        \hline
+    \end{tabularx}
+\end{sheetcontents}
+
+\makepart{单选题}{共~5~小题，每小题~2~分，共~10~分}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{A}
+    \options{短选项甲}
+            {短选项乙}
+            {短选项丙}
+            {短选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{B}
+    \options{中等长度的选项甲}
+            {中等长度的选项乙}
+            {中等长度的选项丙}
+            {中等长度的选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{C}
+    \options{一个特别特别长的需要分四行显示的选项甲}
+            {一个特别特别长的需要分四行显示的选项乙}
+            {一个特别特别长的需要分四行显示的选项丙}
+            {一个特别特别长的需要分四行显示的选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{A}
+    \options{短选项甲}
+            {短选项乙}
+            {短选项丙}
+            {短选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{B}
+    \options{中等长度的选项甲}
+            {中等长度的选项乙}
+            {中等长度的选项丙}
+            {中等长度的选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{C}
+    \options{一个特别特别长的需要分四行显示的选项甲}
+            {一个特别特别长的需要分四行显示的选项乙}
+            {一个特别特别长的需要分四行显示的选项丙}
+            {一个特别特别长的需要分四行显示的选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{A}
+    \options{短选项甲}
+            {短选项乙}
+            {短选项丙}
+            {短选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{B}
+    \options{中等长度的选项甲}
+            {中等长度的选项乙}
+            {中等长度的选项丙}
+            {中等长度的选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{C}
+    \options{一个特别特别长的需要分四行显示的选项甲}
+            {一个特别特别长的需要分四行显示的选项乙}
+            {一个特别特别长的需要分四行显示的选项丙}
+            {一个特别特别长的需要分四行显示的选项丁}
+\end{problem}
+
+\begin{problem}
+    这是一个单选题，选啥看着办\pickout{A}
+    \options{短选项甲}
+            {短选项乙}
+            {短选项丙}
+            {短选项丁}
+\end{problem}
+
+\begin{sheetcontents}
+    \begin{tabularx}{\textwidth}{|*{10}{X<{\centering}|}}
+        \hline
+        \repeatcell{5}{text=#1} \\
+        \hline
+        \pickoutx{A} & \pickoutx{B} & \pickoutx{C} & \pickoutx{D} & \pickoutx{A} \\
+        \hline
+        \repeatcell{5}{start=\lastvalue,text=#1} \\
+        \hline
+        \pickoutx{A} & \pickoutx{B} & \pickoutx{C} & \pickoutx{D} & \pickoutx{A} \\
+        \hline
+    \end{tabularx}
+\end{sheetcontents}
+
+\makepart{填空题}{共~5~空，每空~2~分，共~10~分}
+
+\begin{problem}
+    这是一道填空题，空在这：\fillindex{待显示的答案}。
+\end{problem}
+
+\begin{problem}
+    这又是一道填空题，一道题可以有任意多个空，如\fillindex{又一个待显示的答案}与\fillindex{第三个待显示的答案}，序号会自动增加。
+\end{problem}
+
+\begin{problem}
+    最后一道填空题了，来个程序填空吧：
+    \begin{minted}[escapeinside=@@]{cpp}
+        template <@\fillindex{\texttt{typename T}}@>
+        T add_two(T a, T b) {
+            return @\fillindex{\texttt{a + b}}@;
+        }
+    \end{minted}
+\end{problem}
+
+\begin{sheetcontents}
+    \begin{enumerate}[label=(\arabic*)]
+        \item \fillinx{0.45}{待显示的答案}
+        \item \fillinx{0.45}{又一个待显示的答案}
+        \item \fillinx{0.45}{第三个待显示的答案}
+        \item \fillinx{0.45}{\mintinline{cpp}{typename T}}
+        \item \fillinx{0.45}{\mintinline{cpp}{a + b}}
+    \end{enumerate}
+\end{sheetcontents}
+
+\makepart{简答题}{共~5~小题，每小题~4~分，共~20~分}
+
+\begin{problem}
+    第一道题的描述。
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 第一条，随便说点什么；\dotfill 2分
+        \item 第二条，再随便说点什么。\dotfill 2分
+    \end{enumerate}
+\end{solution}
+
+\begin{studentanswer}
+    \vspace{28ex}
+\end{studentanswer}
+
+\begin{problem}
+    第二道题的描述。
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 第一条，随便说点什么；\dotfill 2分
+        \item 第二条，再随便说点什么。\dotfill 2分
+    \end{enumerate}
+\end{solution}
+
+\begin{studentanswer}
+    \vspace{28ex}
+\end{studentanswer}
+
+\begin{problem}
+    第五道题的描述。
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 第一条，随便说点什么；\dotfill 2分
+        \item 第二条，再随便说点什么。\dotfill 2分
+    \end{enumerate}
+\end{solution}
+
+\begin{studentanswer}
+    \vspace{28ex}
+\end{studentanswer}
+
+\begin{problem}
+    第三道题的描述。
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 第一条，随便说点什么；\dotfill 2分
+        \item 第二条，再随便说点什么。\dotfill 2分
+    \end{enumerate}
+\end{solution}
+
+\begin{studentanswer}
+    \vspace{28ex}
+\end{studentanswer}
+
+\begin{problem}
+    第四道题的描述。
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 第一条，随便说点什么；\dotfill 2分
+        \item 第二条，再随便说点什么。\dotfill 2分
+    \end{enumerate}
+\end{solution}
+
+\begin{studentanswer}
+    \vspace{28ex}
+\end{studentanswer}
+
+\makepart{程序阅读题}{共~2~空，每空~5~分，共~10~分}
+
+\begin{problem}
+    写出下列程序的运行结果，按照输出结果依次填写~1~行输出。
+    \begin{minted}{cpp}
+        #include <iostream>
+        
+        int main() {
+            std::cout << "Hello" << std::endl;
+            return 0;
+        }
+        
+    \end{minted}
+    运行结果：
+    \begin{enumerate}[label=(\arabic*),series=cuzafter]
+        \item \fillinx{0.9}{\mintinline{console}{Hello}}
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    写出下列程序的运行结果，按照输出结果依次填写~1~行输出。
+    \begin{minted}{cpp}
+        #include <iostream>
+        
+        int main() {
+            std::cout << "World" << std::endl;
+            return 0;
+        }
+    \end{minted}
+    运行结果：
+    \begin{enumerate}[label=(\arabic*),resume=cuzafter]
+        \item \fillinx{0.9}{\mintinline{console}{Hello}}
+    \end{enumerate}
+\end{problem}
+
+\begin{sheetcontents}
+    \begin{enumerate}[label=(\arabic*)]
+        \item \fillinx{0.9}{\mintinline{console}{Hello}}
+    \end{enumerate}
+\end{sheetcontents}
+
+\makepart{程序设计题}{共~2~题，第~1~题~8~分，第~2~题~12~分，共~20~分}
+
+\begin{problem}
+    编写哈喽世界。
+\end{problem}
+
+\begin{solution}
+    \begin{minted}[escapeinside=@@]{cpp}
+        #include <iostream> @\dotfill{5分}@
+        
+        int main() {
+            std::cout << "Hello World" << std::endl; @\dotfill{5分}@
+            return 0;
+        }
+    \end{minted}
+\end{solution}
+
+\begin{studentanswer}
+    \newpage
+\end{studentanswer}
+
+\begin{problem}
+    编写古德白世界。
+\end{problem}
+
+\begin{solution}
+    \begin{minted}[escapeinside=@@]{cpp}
+        #include <iostream> 
+        @\dotfill{5分}@
+        
+        int main() {
+            std::cout << "Goodbye World" << std::endl; @\dotfill{5分}@
+            return 0;
+        }
+    \end{minted}
+\end{solution}
+
+\begin{studentanswer}
+    \newpage
+\end{studentanswer}
+
+\makepart{计算题}{共~1~题，每题~10~分，共~10~分}
+
+\begin{problem}
+    求解不定积分：
+    $$f(x)=\int\sin{x}\mathrm{d}x$$
+\end{problem}
+
+\begin{solution}
+    $$f(x)=\int\sin{x}\mathrm{d}x=\cos{x}+C$$
+\end{solution}
+
+\begin{studentanswer}
+    \newpage
+\end{studentanswer}
+
+
+\makepart{证明题}{共~1~题，每题~10~分，共~10~分}
+
+\begin{problem}
+    证明：
+    $$f(x)=\int\sin{x}\mathrm{d}x$$
+\end{problem}
+
+\begin{proof}
+    $$f(x)=\int\sin{x}\mathrm{d}x=\cos{x}+C$$
+\end{proof}
+
+\begin{studentanswer}
+    \newpage
+\end{studentanswer}
+
+\end{document}
