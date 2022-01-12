@@ -1,4 +1,7 @@
 \documentclass[]{cuzexam}
+% \documentclass[answer]{cuzexam}
+% \documentclass[sheet]{cuzexam}
+% \documentclass[answer,sheet]{cuzexam}
 
 % =================================================
 %       PDF信息
@@ -323,8 +326,8 @@
 \end{problem}
 
 \begin{solution}
-    \begin{minted}[escapeinside=@@]{cpp}
-        #include <iostream> @\dotfill{5分}@
+    \begin{minted}[escapeinside=@@,texcomments=true]{cpp}
+        #include <iostream> \dotfill{5分}
         
         int main() {
             std::cout << "Hello World" << std::endl; @\dotfill{5分}@
@@ -342,9 +345,8 @@
 \end{problem}
 
 \begin{solution}
-    \begin{minted}[escapeinside=@@]{cpp}
-        #include <iostream> 
-        @\dotfill{5分}@
+    \begin{minted}[escapeinside=@@,texcomments=true]{cpp}
+        #include <iostream> \dotfill{5分}
         
         int main() {
             std::cout << "Goodbye World" << std::endl; @\dotfill{5分}@
