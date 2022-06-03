@@ -108,6 +108,7 @@
 \newcommand{\cuzsemester}[1]{\def\cuz@semester{#1}}
 \newcommand{\cuzcourse}[1]{\def\cuz@course{#1}}
 \newcommand{\cuzlecturers}[1]{\def\cuz@lecturers{#1}}
+\newcommand{\cuzexamstage}[1]{\def\cuz@examstage{#1}}
 \newcommand{\cuzexamtype}[1]{\def\cuz@examtype{#1}}
 \newcommand{\cuzpapertype}[1]{\def\cuz@papertype{#1}}
 \newcommand{\cuznumberparts}[1]{\setcounter{cuz@numberparts}{#1}}
@@ -152,7 +153,7 @@
 % 试卷头制作
 \newcommand{\makehead}{
   \begin{center}
-    \parbox{\textwidth}{\centering \zihao{4} \heiti \bfseries 浙江传媒学院《\cuz@course》期终（\cuz@examtype）\cuz@titleending
+    \parbox{\textwidth}{\centering \zihao{4} \heiti \bfseries 浙江传媒学院《\cuz@course》\cuz@examstage（\cuz@examtype）\cuz@titleending
     }\\
     \vspace{1em}
     \underline{\quad\cuz@academicyear\quad}学年\quad 第\underline{~\cuz@semester~}学期
@@ -167,7 +168,7 @@
   \end{center}
 }
 
-\newcommand{\cuz@footnotetext}{《\cuz@course》期终（\cuz@examtype）\cuz@titleending \quad 第~\thepage~页/共~\pageref{LastPage}~页}
+\newcommand{\cuz@footnotetext}{《\cuz@course》\cuz@examstage（\cuz@examtype）\cuz@titleending \quad 第~\thepage~页/共~\pageref{LastPage}~页}
 
 % 去掉页眉下划线
 \renewcommand{\headrulewidth}{0pt}
