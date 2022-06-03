@@ -240,7 +240,7 @@
 }
 
 \newcommand{\pickout}[1]{
-  \hfill[\makebox[1.5em]{\answer{#1~}}]
+  \hfill[\makebox[1.5em]{\answer{#1~}}]\par
 }
 
 \newcommand{\pickoutx}[1]{
@@ -252,28 +252,28 @@
 \newenvironment{problemreal}{
     \stepcounter{problem}
     \arabic{problem}.\ignorespaces
-}{\ifsheet\else\bigskip\fi\par}
+}{\par\ifsheet\else\bigskip\fi}
 \newenvironment{solutionreal}{
     \ifsheet
         \stepcounter{problem}
         \arabic{problem}\quad
     \fi
     \textsf{解}\quad\ignorepars
-}{\ifanswer\hfill\ensuremath{\square}\fi\par}
+}{\par\ifanswer\hfill\ensuremath{\square}\fi}
 \newenvironment{proofreal}{
     \ifsheet
         \stepcounter{problem}
         \arabic{problem}\quad
     \fi
     \textsf{证明}\quad\ignorepars
-}{\ifanswer\hfill\ensuremath{\square}\bigskip\fi\par}
+}{\par\ifanswer\hfill\ensuremath{\square}\bigskip\fi}
 \newenvironment{analysisreal}{
     \ifsheet
         \stepcounter{problem}
         \arabic{problem}\quad
     \fi
     \textsf{解析}\quad\ignorepars
-}{\ifanswer\hfill\ensuremath{\square}\bigskip\fi\par}
+}{\par\ifanswer\hfill\ensuremath{\square}\bigskip\fi}
 
 \newenvironment{problem}{\problemreal}{\endproblemreal}
 \newenvironment{solution}{\solutionreal}{\endsolutionreal}
@@ -320,36 +320,37 @@
 \newlength{\lmax}
 
 \newcommand{\options}[4]{
-    \par
   \settowidth{\xxla}{(A)~#1~}
   \settowidth{\xxlb}{(B)~#2~}
   \settowidth{\xxlc}{(C)~#3~}
   \settowidth{\xxld}{(D)~#4~}
-
   \ifthenelse{\lengthtest{\xxla>\xxlb}}{\setlength{\lmax}{\xxla}}{\setlength{\lmax}{\xxlb}}
   \ifthenelse{\lengthtest{\xxlc>\lmax}}{\setlength{\lmax}{\xxlc}}{}
   \ifthenelse{\lengthtest{\xxld>\lmax}}{\setlength{\lmax}{\xxld}}{}
   \setlength{\lhalf}{0.5\linewidth}
   \setlength{\lquarter}{0.25\linewidth}
   \ifthenelse{\lengthtest{\lmax>\lhalf}}{
-    \begin{enumerate}[label=(\Alph*),parsep=0ex,itemsep=0ex,leftmargin=2em, topsep=0ex]
-      \item #1
-      \item #2
-      \item #3
-      \item #4
-    \end{enumerate}
+    % \begin{enumerate}[label=(\Alph*),parsep=0ex,itemsep=0ex,leftmargin=2em, topsep=0ex]
+    %   \item #1
+    %   \item #2
+    %   \item #3
+    %   \item #4
+    % \end{enumerate}
+      \makebox[\lhalf][l]{(A)~#1~}\par%
+      \makebox[\lhalf][l]{(B)~#2~}\par%
+      \makebox[\lhalf][l]{(C)~#3~}\par%
+      \makebox[\lhalf][l]{(D)~#4~}\par%
   }{
     \ifthenelse{\lengthtest{\lmax>\lquarter}}{
       \makebox[\lhalf][l]{(A)~#1~}%
-      \makebox[\lhalf][l]{(B)~#2~}\\%
+      \makebox[\lhalf][l]{(B)~#2~}\par%
       \makebox[\lhalf][l]{(C)~#3~}%
-      \makebox[\lhalf][l]{(D)~#4~}\\%
-      \vspace{-3ex}
+      \makebox[\lhalf][l]{(D)~#4~}\par%
     }{
       \makebox[\lquarter][l]{(A)~#1~}%
       \makebox[\lquarter][l]{(B)~#2~}%
       \makebox[\lquarter][l]{(C)~#3~}%
-      \makebox[\lquarter][l]{(D)~#4~}%
+      \makebox[\lquarter][l]{(D)~#4~}\par%
     }
   }
 }
