@@ -252,7 +252,7 @@
 \newenvironment{problemreal}{
     \stepcounter{problem}
     \arabic{problem}.\ignorespaces
-}{\par\ifsheet\else\bigskip\fi}
+}{\par\ifsheet\else\smallskip\fi}
 \newenvironment{solutionreal}{
     \ifsheet
         \stepcounter{problem}
