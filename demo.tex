@@ -1,7 +1,8 @@
-\documentclass[]{cuzexam}
-% \documentclass[answer]{cuzexam}
-% \documentclass[sheet]{cuzexam}
-% \documentclass[answer,sheet]{cuzexam}
+% 以下四行按需求任选其一即可
+% \documentclass[]{cuzexam} % 试卷
+\documentclass[answer]{cuzexam} % 带答案的试卷（一般不需要）
+% \documentclass[sheet]{cuzexam} % 答题纸
+% \documentclass[answer,sheet]{cuzexam} % 参考答案
 
 % =================================================
 %       PDF信息
@@ -234,21 +235,6 @@
 \end{studentanswer}
 
 \begin{problem}
-    第五道题的描述。
-\end{problem}
-
-\begin{solution}
-    \begin{enumerate}[label=(\arabic*)]
-        \item 第一条，随便说点什么；\dotfill 2分
-        \item 第二条，再随便说点什么。\dotfill 2分
-    \end{enumerate}
-\end{solution}
-
-\begin{studentanswer}
-    \vspace{28ex}
-\end{studentanswer}
-
-\begin{problem}
     第三道题的描述。
 \end{problem}
 
@@ -265,6 +251,27 @@
 
 \begin{problem}
     第四道题的描述。
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\arabic*)]
+        \item 第一条，随便说点什么；\dotfill 2分
+        \item 第二条，再随便说点什么。\dotfill 2分
+    \end{enumerate}
+\end{solution}
+
+\begin{studentanswer}
+    \vspace{28ex}
+\end{studentanswer}
+
+\begin{problem}
+    第五道题的描述（如图\ref{fig:1}所示）。
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{cuzlogo}
+        \caption[校徽]{测试一下图片，校徽}
+        \label{fig:1}
+    \end{figure}
 \end{problem}
 
 \begin{solution}

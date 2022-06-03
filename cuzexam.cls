@@ -30,6 +30,7 @@
 % \RequirePackage{environ}
 \RequirePackage{calc}
 \RequirePackage{graphicx}
+\graphicspath{{images}}
 \RequirePackage{ifthen}
 \RequirePackage[shortlabels]{enumitem}
 \RequirePackage{CJKnumb}
