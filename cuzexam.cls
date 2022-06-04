@@ -206,26 +206,16 @@
   \setcounter{ifillin}{0}
   \stepcounter{section}
   \vspace{1ex}
-  \begin{tabular}{|r|r}
-    \cline{1-1}
-      \multicolumn{1}{|c|}{\hfill 得 \hfill 分 \hfill~}
-      & \multicolumn{1}{c}{\multirow{2}[3]{*}{\textbf{\Chinese{section}、#1}(#2)}}
+  \begin{tabularx}{\textwidth}{@{}Xr}
+    \cline{2-2}
+      \multirow[b]{2}{=}[-1.3ex]{\textbf{\Chinese{section}、#1}(#2)}
+      & \multicolumn{1}{|c|}{\hfill 得 \hfill 分 \hfill~}
       \\
-    \cline{1-1}
-      \parbox{\textwidth}{\vspace{6ex}}
-      & \\
-    \cline{1-1}
-  \end{tabular}
-  % \begin{tabular}{r|r|}
-  %   \cline{2-2}
-  %     \multicolumn{1}{c}{\multirow{2}[3]{*}{\textbf{\Chinese{section}、#1}(#2)}}
-  %     & \multicolumn{1}{|c|}{\hfill 得 \hfill 分 \hfill~}
-  %     \\
-  %   \cline{2-2}
-  %      & \parbox{\textwidth}{\vspace{6ex}}
-  %     \\
-  %   \cline{2-2}
-  % \end{tabular}
+    \cline{2-2}
+      & \multicolumn{1}{|c|}{\parbox{\textwidth}{\vspace{5ex}}}
+      \\
+    \cline{2-2}
+  \end{tabularx}
   \vspace{1ex}
 }
 
