@@ -40,6 +40,7 @@
 % \RequirePackage{zref-lastpage}
 \RequirePackage{tikz}
 \RequirePackage{expl3}
+\RequirePackage{xhfill}
 
 \RequirePackage{hyperref}
 \AtBeginDocument{%
@@ -159,7 +160,7 @@
     \underline{\quad\cuz@academicyear\quad}学年\quad 第\underline{~\cuz@semester~}学期
     \quad 任课教师\underline{\quad\cuz@lecturers\quad}\\
     \vspace{1em}
-    \hrulefill~学院~\hrulefill~班~\quad~姓名~\hrulefill~学号~\hrulefill
+    \strut\xrfill[-0.5ex]{0.5pt}~学院~\xrfill[-0.5ex]{0.5pt}~班~\quad~姓名~\xrfill[-0.5ex]{0.5pt}~学号~\xrfill[-0.5ex]{0.5pt}
     \vspace{0.5em}
     \ifanswer\else
         \ifthenelse{\thecuz@numberparts=0}{}{\cuz@scoretable}
