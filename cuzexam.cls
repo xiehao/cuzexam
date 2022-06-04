@@ -216,6 +216,16 @@
       & \\
     \cline{1-1}
   \end{tabular}
+  % \begin{tabular}{r|r|}
+  %   \cline{2-2}
+  %     \multicolumn{1}{c}{\multirow{2}[3]{*}{\textbf{\Chinese{section}、#1}(#2)}}
+  %     & \multicolumn{1}{|c|}{\hfill 得 \hfill 分 \hfill~}
+  %     \\
+  %   \cline{2-2}
+  %      & \parbox{\textwidth}{\vspace{6ex}}
+  %     \\
+  %   \cline{2-2}
+  % \end{tabular}
   \vspace{1ex}
 }
 
@@ -240,7 +250,7 @@
 }
 
 \newcommand{\pickout}[1]{
-  \hfill[\makebox[1.5em]{\answer{#1~}}]\par
+  ~\strut~\hfill[\makebox[1.5em]{\answer{#1~}}]\par
 }
 
 \newcommand{\pickoutx}[1]{
@@ -258,22 +268,22 @@
         \stepcounter{problem}
         \arabic{problem}\quad
     \fi
-    \textsf{解}\quad\ignorepars
-}{\par\ifanswer\hfill\ensuremath{\square}\fi}
+    \textsf{解答}\quad\ignorepars
+}{\ifanswer\strut\hfill\ensuremath{\square}\else\par\fi}
 \newenvironment{proofreal}{
     \ifsheet
         \stepcounter{problem}
         \arabic{problem}\quad
     \fi
     \textsf{证明}\quad\ignorepars
-}{\par\ifanswer\hfill\ensuremath{\square}\bigskip\fi}
+}{\ifanswer\strut\hfill\ensuremath{\square}\else\par\fi}
 \newenvironment{analysisreal}{
     \ifsheet
         \stepcounter{problem}
         \arabic{problem}\quad
     \fi
     \textsf{解析}\quad\ignorepars
-}{\par\ifanswer\hfill\ensuremath{\square}\bigskip\fi}
+}{\ifanswer\strut\hfill\ensuremath{\square}\else\par\fi}
 
 \newenvironment{problem}{\problemreal}{\endproblemreal}
 \newenvironment{solution}{\solutionreal}{\endsolutionreal}
