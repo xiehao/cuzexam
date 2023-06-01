@@ -210,11 +210,11 @@
       \ifsheet
         \ifanswer
           \vspace*{2ex}
-          {\heiti{\Chinese{section}、#1}(#2)}
+          {\zihao{4}\heiti{\Chinese{section}、#1}(#2)}
         \else
           \begin{tabularx}{\textwidth}{@{}Xr}
             \cline{2-2}
-            \multirow[b]{2}{=}[-1.3ex]{\heiti{\Chinese{section}、#1}(#2)}
+            \multirow[b]{2}{=}[-1.3ex]{\zihao{4}\heiti{\Chinese{section}、#1}(#2)}
              & \multicolumn{1}{|c|}{\hfill 得 \hfill 分 \hfill~}
             \\
             \cline{2-2}
@@ -225,7 +225,7 @@
         \fi
       \else
         \vspace*{2ex}
-        {\heiti{\Chinese{section}、#1}(#2)}
+        {\zihao{4}\heiti{\Chinese{section}、#1}(#2)}
       \fi
       \vspace{1ex}
     }
@@ -294,7 +294,9 @@
 }{\ifanswer\strut\hfill\ensuremath{\square}\else\par\fi}
 \newenvironment{proof}{\proofreal}{\endproofreal}
 \newenvironment{analysis}{\analysisreal}{\endanalysisreal}
-\newenvironment{extracomment}{}{}
+\newenvironment{extracomment}{
+  \zihao{4}\heiti
+}{}
 \newenvironment{sheetcontents}{}{}
 \newenvironment{studentanswer}{
   \ifsheet
