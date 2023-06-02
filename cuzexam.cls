@@ -177,7 +177,7 @@
     \fancyheadoffset[L]{6em}
     \fancyhf{}
     \pagestyle{fancy}
-    \cfoot{\small\cuz@footnotetext}
+    \cfoot{\zihao{-5}\cuz@footnotetext}
     \lhead{
       \ifthenelse{\isodd{\thepage}}{
         \cuz@gutter
