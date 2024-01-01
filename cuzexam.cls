@@ -41,6 +41,9 @@
     \RequirePackage{tikz}
     \RequirePackage{expl3}
     \RequirePackage{xhfill}
+    \RequirePackage{booktabs}
+    \RequirePackage{subcaption}
+    \RequirePackage{wrapfig}
 
     \RequirePackage{hyperref}
     \AtBeginDocument{%
@@ -126,11 +129,11 @@
         \hline
         \multirow{3}{*}{\textbf{总分}}
          & \multirow{2}{*}{}
-         & \textbf{题号}
+         & \textbf{评分标准}
          & \repeatcell{\value{cuz@numberparts}}{text=\textbf{\CJKnumber{##1}}}
         \\
         \cline{3-\thecuz@numbercolumns}
-         &                                                                     & \multirow{2}{*}{\textbf{题分}}
+         &                                                                     & \multirow{2}{*}{\textbf{得分}}
          & \eline{\value{cuz@numberparts}}
         \\
          &                                                                     &                              & \eline{\value{cuz@numberparts}}
@@ -247,11 +250,11 @@
 
   \newcommand{\fillindex}[1]{
   \stepcounter{ifillin}
-  \underline{\hspace{0.5em}\ifanswer{#1}\else{(\arabic{ifillin})}\fi\hspace{0.5em}}
+  \hspace*{-1em}\underline{\hspace{0.5em}\ifanswer{#1}\else{(\arabic{ifillin})}\fi\hspace{0.5em}}\hspace*{-.5em}
 }
 
 \newcommand{\pickout}[1]{
-  ~\strut~\hfill[\makebox[1.5em]{\answer{#1~}}]\par
+  ~\strut~\hfill(\makebox[1.5em]{\answer{#1~}})\par
 }
 
 \newcommand{\pickoutx}[1]{
@@ -385,7 +388,7 @@
 
 % 代码设置
 \RequirePackage{minted,relsize}
-\usemintedstyle{bw}
+\usemintedstyle{colorful}
 \setminted{%
   autogobble,% automatically remove the spaces to the left of the code
   % linenos=true,% show line numbers
@@ -398,6 +401,14 @@
 \setmintedinline{%
   fontsize={\smaller[1]},
 }%
+\newmintinline{c}{fontsize=\relscale{.95}}
+\newminted{c}{escapeinside=@@,frame=single}
+\newmintinline{cpp}{fontsize=\relscale{.95}}
+\newminted{cpp}{escapeinside=@@,frame=single}
+\newmintinline{java}{fontsize=\relscale{.95}}
+\newminted{java}{escapeinside=@@,frame=single}
+\newmintinline{python}{fontsize=\relscale{.95}}
+\newminted{python}{escapeinside=@@,frame=single}
 % \setmonofont{Fira Code}
 
 % 数学公式均为行间形式
@@ -409,3 +420,39 @@
 \FV@AddToHook{\FV@ListParameterHook}{\topsep=\fancyvrbtopsep\partopsep=\fancyvrbpartopsep}
 \setlength{\fancyvrbtopsep}{0.5ex}
 \setlength{\fancyvrbpartopsep}{0.5ex}
+
+\usetikzlibrary{%
+  intersections,
+  through,
+  shapes.geometric,
+  shapes.misc,
+  positioning,
+  calc,
+  arrows,
+  graphs,
+  math
+}
+
+\tikzstyle{terminal} = [
+rounded rectangle, thick,
+% font = \ttfamily\footnotesize,
+draw = black!80,
+text = black!80,
+text height = 1.6ex,
+text depth = .2ex,
+]%
+\tikzstyle{nonterminal} = [
+rectangle, thick,
+% font = \ttfamily\footnotesize,
+draw = black!80,
+text = black!80,
+text height = 1.6ex,
+text depth = .2ex,
+]%
+\tikzstyle{comment box} = [
+rectangle, very thin,
+fill = white,
+font = \ttfamily\footnotesize,
+text = black!70,
+text height = 1.4ex, text depth = .25ex
+]%
