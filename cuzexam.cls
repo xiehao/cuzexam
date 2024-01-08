@@ -162,7 +162,7 @@
         \vspace{1em}
         \underline{\quad\cuz@academicyear\quad}学年\quad 第\underline{~\cuz@semester~}学期
         \quad 任课教师\underline{\quad\cuz@lecturers\quad}\\
-        \vspace{1em}
+        \vspace{.5em}
         \strut\xrfill[-0.5ex]{0.5pt}~学院~\xrfill[-0.5ex]{0.5pt}~班~\quad~姓名~\xrfill[-0.5ex]{0.5pt}~学号~\xrfill[-0.5ex]{0.5pt}
         \vspace{0.5em}
         \ifanswer\else
@@ -209,11 +209,11 @@
       \setcounter{problem}{0}
       \setcounter{ifillin}{0}
       \stepcounter{section}
-      \vspace{1ex}
+      \vspace{-1ex}
       \ifsheet
         \ifanswer
           \vspace*{2ex}
-          {\zihao{4}\heiti{\Chinese{section}、#1}(#2)}
+          {\zihao{4}\bfseries\heiti{\Chinese{section}、#1}(#2)}
         \else
           \begin{tabularx}{\textwidth}{@{}Xr}
             \cline{2-2}
@@ -228,7 +228,7 @@
         \fi
       \else
         \vspace*{2ex}
-        {\zihao{4}\heiti{\Chinese{section}、#1}(#2)}
+        {\zihao{4}\bfseries\heiti{\Chinese{section}、#1}(#2)}
       \fi
       \vspace{1ex}
     }
@@ -266,7 +266,7 @@
 \newenvironment{problemreal}{
   \stepcounter{problem}
   \arabic{problem}.\ignorespaces
-}{\par\ifsheet\else\smallskip\fi}
+}{\par\ifsheet\else\fi}
 \newenvironment{solutionreal}{
   \ifsheet
     \stepcounter{problem}
@@ -344,6 +344,8 @@
 \newlength{\lhalf}
 \newlength{\lquarter}
 \newlength{\lmax}
+\newlength{\lpadding}
+\setlength{\lpadding}{0.1em}
 
 \newcommand{\options}[4]{
   \settowidth{\xxla}{(A)~#1~}
@@ -362,18 +364,18 @@
     %   \item #3
     %   \item #4
     % \end{enumerate}
-    \makebox[\lhalf][l]{(A)~#1~}\par%
-    \makebox[\lhalf][l]{(B)~#2~}\par%
-    \makebox[\lhalf][l]{(C)~#3~}\par%
-    \makebox[\lhalf][l]{(D)~#4~}\par%
+    \hspace{\lpadding}\makebox[\lhalf][l]{(A)~#1~}\par%
+    \hspace{\lpadding}\makebox[\lhalf][l]{(B)~#2~}\par%
+    \hspace{\lpadding}\makebox[\lhalf][l]{(C)~#3~}\par%
+    \hspace{\lpadding}\makebox[\lhalf][l]{(D)~#4~}\par%
   }{
     \ifthenelse{\lengthtest{\lmax>\lquarter}}{
-      \makebox[\lhalf][l]{(A)~#1~}%
+      \hspace{\lpadding}\makebox[\lhalf][l]{(A)~#1~}%
       \makebox[\lhalf][l]{(B)~#2~}\par%
-      \makebox[\lhalf][l]{(C)~#3~}%
+      \hspace{\lpadding}\makebox[\lhalf][l]{(C)~#3~}%
       \makebox[\lhalf][l]{(D)~#4~}\par%
     }{
-      \makebox[\lquarter][l]{(A)~#1~}%
+      \hspace{\lpadding}\makebox[\lquarter][l]{(A)~#1~}%
       \makebox[\lquarter][l]{(B)~#2~}%
       \makebox[\lquarter][l]{(C)~#3~}%
       \makebox[\lquarter][l]{(D)~#4~}\par%
