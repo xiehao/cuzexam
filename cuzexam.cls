@@ -62,6 +62,20 @@
     \setlength{\lineskiplimit}{3pt}
     \setlength{\lineskip}{3pt}
 
+    \RequirePackage{ifplatform}
+    \iflinux
+      \setCJKmainfont{AdobeSongStd-Light}[%
+        AutoFakeBold=4,
+        ItalicFont=AdobeKaitiStd-Regular,
+      ]
+      \setCJKsansfont{AdobeHeitiStd-Regular}[%
+        AutoFakeBold=4,
+      ]%
+      \setCJKmonofont{AdobeFangsongStd-Regular}[%
+        AutoFakeBold=4,
+      ]%
+    \fi
+
     \ExplSyntaxOn
     % we need LaTeX counters and not expl3 ones because of tabularx two-step process
     \newcounter{repeatstart}
