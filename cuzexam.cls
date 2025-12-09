@@ -189,7 +189,7 @@
             \end{center}
         }
 
-        \newcommand{\cuz@footnotetext}{《\cuz@course》\cuz@examstage\cuz@examtype\cuz@titleending \quad 第~\thepage~页/共~\pageref{LastPage}~页}
+        \newcommand{\cuz@footnotetext}{《\cuz@course》\cuz@examstage\cuz@examtype\cuz@titleending \quad 第~\thepage~页，共~\pageref{LastPage}~页}
 
         % 去掉页眉下划线
         \renewcommand{\headrulewidth}{0pt}
