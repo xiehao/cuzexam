@@ -62,19 +62,19 @@
         \setlength{\parindent}{0em}
         \setlength{\lineskiplimit}{3pt}
         \setlength{\lineskip}{3pt}
-        
+
         \RequirePackage{ifplatform}
         \iflinux
-          \setCJKmainfont{AdobeSongStd-Light}[%
-            AutoFakeBold=4,
-            ItalicFont=AdobeKaitiStd-Regular,
-          ]
-          \setCJKsansfont{AdobeHeitiStd-Regular}[%
-            AutoFakeBold=4,
-          ]%
-          \setCJKmonofont{AdobeFangsongStd-Regular}[%
-            AutoFakeBold=4,
-          ]%
+            \setCJKmainfont{AdobeSongStd-Light}[%
+                AutoFakeBold=4,
+                ItalicFont=AdobeKaitiStd-Regular,
+            ]
+            \setCJKsansfont{AdobeHeitiStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
+            \setCJKmonofont{AdobeFangsongStd-Regular}[%
+                AutoFakeBold=4,
+            ]%
         \fi
 
         \ExplSyntaxOn
@@ -290,7 +290,9 @@
         \arabic{problem}\quad
     \fi
     \textsf{解答}\quad\ignorepars
-}{\ifanswer\strut\hfill\ensuremath{\square}\else\par\fi}
+}{
+    % \ifanswer\strut\hfill\ensuremath{\square}\else\par\fi
+}
 \newenvironment{proofreal}{
     \ifsheet
         \stepcounter{problem}
@@ -375,16 +377,23 @@
     \setlength{\lhalf}{0.5\linewidth}
     \setlength{\lquarter}{0.25\linewidth}
     \ifthenelse{\lengthtest{\lmax>\lhalf}}{
-        % \begin{enumerate}[label=(\Alph*),parsep=0ex,itemsep=0ex,leftmargin=2em, topsep=0ex]
-        %   \item #1
-        %   \item #2
-        %   \item #3
-        %   \item #4
-        % \end{enumerate}
-        \hspace{\lpadding}\makebox[\lhalf][l]{A.~#1~}\par%
-        \hspace{\lpadding}\makebox[\lhalf][l]{B.~#2~}\par%
-        \hspace{\lpadding}\makebox[\lhalf][l]{C.~#3~}\par%
-        \hspace{\lpadding}\makebox[\lhalf][l]{D.~#4~}\par%
+        \begin{enumerate}[
+                label=\Alph*.,
+                labelsep=0.4em,
+                parsep=0ex,
+                itemsep=0ex,
+                leftmargin=1.5em,
+                topsep=0ex
+            ]
+            \item #1
+            \item #2
+            \item #3
+            \item #4
+        \end{enumerate}
+        % \hspace{\lpadding}\makebox[\lhalf][l]{A.~#1~}\par%
+        % \hspace{\lpadding}\makebox[\lhalf][l]{B.~#2~}\par%
+        % \hspace{\lpadding}\makebox[\lhalf][l]{C.~#3~}\par%
+        % \hspace{\lpadding}\makebox[\lhalf][l]{D.~#4~}\par%
     }{
         \ifthenelse{\lengthtest{\lmax>\lquarter}}{
             \hspace{\lpadding}\makebox[\lhalf][l]{A.~#1~}%
