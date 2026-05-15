@@ -120,6 +120,20 @@
         \AtBeginEnvironment{tabularx}{\setcounter{repeatstart}{0}}
 
         \prop_new:N \g__cuz_answers_prop
+        \prop_new:N \g__cuz_answer_last_keys_prop
+        \prop_new:N \g__cuz_answer_lists_prop
+        \prop_new:N \g__cuz_answer_counts_prop
+        \prop_new:N \g__cuz_answer_ref_indices_prop
+        \seq_new:N \l__cuz_answer_key_parts_seq
+        \clist_new:N \l__cuz_answer_keys_clist
+        \tl_new:N \l__cuz_answer_prefix_tl
+        \tl_new:N \l__cuz_answer_key_tl
+        \tl_new:N \l__cuz_answer_list_tl
+        \tl_new:N \l__cuz_answer_row_tl
+        \tl_new:N \l__cuz_answer_table_tl
+        \int_new:N \l__cuz_answer_count_int
+        \int_new:N \l__cuz_answer_ref_index_int
+        \int_new:N \l__cuz_answer_total_int
 
         \msg_new:nnn { cuzexam } { duplicate-answer-key }
         { Answer~key~'#1'~is~already~defined.\\Use~a~unique~key~for~\string\cuzanswerdef. }
@@ -127,18 +141,204 @@
         \msg_new:nnn { cuzexam } { undefined-answer-key }
         { Answer~key~'#1'~is~undefined.\\Define~it~first~with~\string\cuzanswerdef. }
 
+        \msg_new:nnn { cuzexam } { answer-prefix-exhausted }
+        { Answer~prefix~'#1'~has~no~more~stored~answers~to~reference.\\Define~another~answer~or~use~an~explicit~key. }
+
+        \cs_new_protected:Nn \cuz_answer_set_prefix:n
+        {
+            \seq_set_split:Nnn \l__cuz_answer_key_parts_seq { : } { #1 }
+            \seq_pop_left:NN \l__cuz_answer_key_parts_seq \l__cuz_answer_prefix_tl
+        }
+
+        \cs_new_protected:Nn \cuz_answer_append_key:nn
+        {
+            \prop_get:NnNTF \g__cuz_answer_lists_prop { #1 } \l__cuz_answer_list_tl
+            {
+                \prop_gput:Nnx \g__cuz_answer_lists_prop { #1 }
+                { \l__cuz_answer_list_tl , #2 }
+            }
+            {
+                \prop_gput:Nnn \g__cuz_answer_lists_prop { #1 } { #2 }
+            }
+            \prop_gput:Nnn \g__cuz_answer_last_keys_prop { #1 } { #2 }
+        }
+
+        \cs_new_protected:Nn \cuz_answer_update_count_from_key:nn
+        {
+            \seq_set_split:Nnn \l__cuz_answer_key_parts_seq { : } { #2 }
+            \seq_pop_left:NN \l__cuz_answer_key_parts_seq \l_tmpa_tl
+            \seq_if_empty:NF \l__cuz_answer_key_parts_seq
+            {
+                \tl_set:Nx \l_tmpb_tl { \seq_item:Nn \l__cuz_answer_key_parts_seq { 1 } }
+                \regex_match:nnTF { \A\d+\Z } { \l_tmpb_tl }
+                {
+                    \prop_get:NnNTF \g__cuz_answer_counts_prop { #1 } \l_tmpc_tl
+                    {
+                        \int_set:Nn \l__cuz_answer_count_int
+                        { \int_max:nn { \l_tmpb_tl } { \l_tmpc_tl } }
+                    }
+                    {
+                        \int_set:Nn \l__cuz_answer_count_int { \l_tmpb_tl }
+                    }
+                    \prop_gput:Nnx \g__cuz_answer_counts_prop { #1 }
+                    { \int_use:N \l__cuz_answer_count_int }
+                }
+                { }
+            }
+        }
+
+        \cs_new_protected:Nn \cuz_answer_register:nnn
+        {
+            \prop_if_in:NnTF \g__cuz_answers_prop { #2 }
+            { \msg_error:nnn { cuzexam } { duplicate-answer-key } { #2 } }
+            {
+                \prop_gput:Nnn \g__cuz_answers_prop { #2 } { #3 }
+                \cuz_answer_append_key:nn { #1 } { #2 }
+                \cuz_answer_update_count_from_key:nn { #1 } { #2 }
+            }
+        }
+
+        \cs_generate_variant:Nn \cuz_answer_register:nnn { Vnn, nVn }
+        \cs_generate_variant:Nn \prop_item:Nn { NV }
+
         \cs_new_protected:Nn \cuz_answer_def:nn
         {
-            \prop_if_in:NnTF \g__cuz_answers_prop { #1 }
-            { \msg_error:nnn { cuzexam } { duplicate-answer-key } { #1 } }
-            { \prop_gput:Nnn \g__cuz_answers_prop { #1 } { #2 } }
+            \tl_if_in:nnTF { #1 } { : }
+            {
+                \cuz_answer_set_prefix:n { #1 }
+                \cuz_answer_register:Vnn \l__cuz_answer_prefix_tl { #1 } { #2 }
+            }
+            {
+                \prop_get:NnNTF \g__cuz_answer_counts_prop { #1 } \l_tmpa_tl
+                { \int_set:Nn \l__cuz_answer_count_int { \l_tmpa_tl + 1 } }
+                { \int_set:Nn \l__cuz_answer_count_int { 1 } }
+                \prop_gput:Nnx \g__cuz_answer_counts_prop { #1 }
+                { \int_use:N \l__cuz_answer_count_int }
+                \tl_set:Nx \l__cuz_answer_key_tl
+                { #1 : \int_use:N \l__cuz_answer_count_int }
+                \cuz_answer_register:nVn { #1 } \l__cuz_answer_key_tl { #2 }
+            }
+        }
+
+        \cs_new_protected:Nn \cuz_answer_get_list:n
+        {
+            \prop_get:NnNTF \g__cuz_answer_lists_prop { #1 } \l__cuz_answer_list_tl
+            { \clist_set:NV \l__cuz_answer_keys_clist \l__cuz_answer_list_tl }
+            { \msg_error:nnn { cuzexam } { undefined-answer-key } { #1 } }
+        }
+
+        \cs_new:Nn \cuz_answer_value_from_list_index:n
+        {
+            \tl_set:Nx \l__cuz_answer_key_tl
+            { \clist_item:Nn \l__cuz_answer_keys_clist { #1 } }
+            \prop_item:NV \g__cuz_answers_prop \l__cuz_answer_key_tl
         }
 
         \cs_new_protected:Nn \cuz_answer_ref:n
         {
             \prop_if_in:NnTF \g__cuz_answers_prop { #1 }
             { \prop_item:Nn \g__cuz_answers_prop { #1 } }
-            { \msg_error:nnn { cuzexam } { undefined-answer-key } { #1 } }
+            {
+                \prop_if_in:NnTF \g__cuz_answer_lists_prop { #1 }
+                {
+                    \cuz_answer_get_list:n { #1 }
+                    \prop_get:NnNTF \g__cuz_answer_ref_indices_prop { #1 } \l_tmpa_tl
+                    { \int_set:Nn \l__cuz_answer_ref_index_int { \l_tmpa_tl + 1 } }
+                    { \int_set:Nn \l__cuz_answer_ref_index_int { 1 } }
+                    \int_compare:nNnTF
+                    { \l__cuz_answer_ref_index_int } > { \clist_count:N \l__cuz_answer_keys_clist }
+                    { \msg_error:nnn { cuzexam } { answer-prefix-exhausted } { #1 } }
+                    {
+                        \prop_gput:Nnx \g__cuz_answer_ref_indices_prop { #1 }
+                        { \int_use:N \l__cuz_answer_ref_index_int }
+                        \cuz_answer_value_from_list_index:n { \l__cuz_answer_ref_index_int }
+                    }
+                }
+                { \msg_error:nnn { cuzexam } { undefined-answer-key } { #1 } }
+            }
+        }
+
+        \cs_new_protected:Nn \cuz_pickout_table_head:nnn
+        {
+            \tl_clear:N \l__cuz_answer_row_tl
+            \int_step_inline:nn { #2 }
+            {
+                \int_compare:nF { ##1 = 1 }
+                { \tl_put_right:Nn \l__cuz_answer_row_tl { & } }
+                \int_compare:nNnTF { #1 + ##1 - 1 } > { #3 }
+                { }
+                {
+                    \tl_put_right:Nx \l__cuz_answer_row_tl
+                    { \exp_not:N \CJKnumber { \int_eval:n { #1 + ##1 - 1 } } }
+                }
+            }
+        }
+
+        \cs_new_protected:Nn \cuz_pickout_table_body:nnn
+        {
+            \tl_clear:N \l__cuz_answer_row_tl
+            \int_step_inline:nn { #2 }
+            {
+                \int_compare:nF { ##1 = 1 }
+                { \tl_put_right:Nn \l__cuz_answer_row_tl { & } }
+                \int_compare:nNnTF { #1 + ##1 - 1 } > { #3 }
+                { }
+                {
+                    \tl_put_right:Nx \l__cuz_answer_row_tl
+                    {
+                        \exp_not:N \pickoutxref
+                        {
+                            \clist_item:Nn \l__cuz_answer_keys_clist
+                            { \int_eval:n { #1 + ##1 - 1 } }
+                        }
+                    }
+                }
+            }
+        }
+
+        \cs_new_protected:Nn \cuz_makepickouttable:nn
+        {
+            \cuz_answer_get_list:n { #2 }
+            \int_set:Nn \l__cuz_answer_total_int { \clist_count:N \l__cuz_answer_keys_clist }
+            \tl_clear:N \l__cuz_answer_table_tl
+            \int_step_inline:nnnn { 1 } { #1 } { \l__cuz_answer_total_int }
+            {
+                \cuz_pickout_table_head:nnn { ##1 } { #1 } { \l__cuz_answer_total_int }
+                \tl_put_right:Nx \l__cuz_answer_table_tl
+                {
+                    \exp_not:N \hline
+                    \exp_not:V \l__cuz_answer_row_tl
+                    \exp_not:N \\
+                    \exp_not:N \hline
+                }
+                \cuz_pickout_table_body:nnn { ##1 } { #1 } { \l__cuz_answer_total_int }
+                \tl_put_right:Nx \l__cuz_answer_table_tl
+                {
+                    \exp_not:V \l__cuz_answer_row_tl
+                    \exp_not:N \\
+                }
+            }
+            \tl_put_right:Nn \l__cuz_answer_table_tl { \hline }
+            \begin{tabularx}{\textwidth}{|*{#1}{X<{\centering}|}}
+                \tl_use:N \l__cuz_answer_table_tl
+            \end{tabularx}
+        }
+
+        \cs_new_protected:Nn \cuz_makefillinlist:nn
+        {
+            \cuz_answer_get_list:n { #2 }
+            \int_compare:nNnTF { #1 } > { 1 }
+            { \begin{multicols}{#1} }
+            { }
+            \begin{enumerate}[label=(\arabic*)]
+                \int_step_inline:nn { \clist_count:N \l__cuz_answer_keys_clist }
+                {
+                    \item \underline{\makebox[\linewidth][l]{\answer{\cuz_answer_value_from_list_index:n { ##1 }}}}
+                }
+            \end{enumerate}
+            \int_compare:nNnTF { #1 } > { 1 }
+            { \end{multicols} }
+            { }
         }
 
         \NewDocumentCommand{\cuzanswerdef}{mm}
@@ -146,6 +346,12 @@
 
         \NewDocumentCommand{\cuzanswerref}{m}
         { \cuz_answer_ref:n { #1 } }
+
+        \NewDocumentCommand{\makepickouttable}{mm}
+        { \cuz_makepickouttable:nn { #1 } { #2 } }
+
+        \NewDocumentCommand{\makefillinlist}{mm}
+        { \cuz_makefillinlist:nn { #1 } { #2 } }
 
         \ExplSyntaxOff
 

@@ -1,8 +1,8 @@
 % 以下四行按需求任选其一即可
-% \documentclass[]{cuzexam} % 试卷
+\documentclass[]{cuzexam} % 试卷
 % \documentclass[answer]{cuzexam} % 带答案的试卷（一般不需要）
 % \documentclass[sheet]{cuzexam} % 答题纸
-\documentclass[answer,sheet]{cuzexam} % 参考答案
+% \documentclass[answer,sheet]{cuzexam} % 参考答案
 
 % =================================================
 %       PDF信息
@@ -45,129 +45,122 @@
 
 \makepart{判断题}{对的划\yes，错的划\no；共~5~小题，每小题~2~分，共~10~分。}
 
-\cuzanswerdef{judge:1}{\yes}
+\cuzanswerdef{judge}{\yes}
 \begin{problem}
-    这是一个正确的结论。\pickoutref{judge:1}
+    这是一个正确的结论。\pickoutref{judge}
 \end{problem}
 
-\cuzanswerdef{judge:2}{\no}
+\cuzanswerdef{judge}{\no}
 \begin{problem}
-    这是一个错误的结论。\pickoutref{judge:2}
+    这是一个错误的结论。\pickoutref{judge}
 \end{problem}
 
-\cuzanswerdef{judge:3}{\yes}
+\cuzanswerdef{judge}{\yes}
 \begin{problem}
-    这是一个正确的结论。\pickoutref{judge:3}
+    这是一个正确的结论。\pickoutref{judge}
 \end{problem}
 
-\cuzanswerdef{judge:4}{\no}
+\cuzanswerdef{judge}{\no}
 \begin{problem}
-    这是一个错误的结论。\pickoutref{judge:4}
+    这是一个错误的结论。\pickoutref{judge}
 \end{problem}
 
-\cuzanswerdef{judge:5}{\yes}
+\cuzanswerdef{judge}{\yes}
 \begin{problem}
-    这是一个正确的结论。\pickoutref{judge:5}
+    这是一个正确的结论。\pickoutref{judge}
 \end{problem}
 
 % 用于在答题纸上生成对应区域，格式随意，此处画成表格
 \begin{sheetcontents}
-    \begin{tabularx}{\textwidth}{|*{5}{X<{\centering}|}}
-        \hline
-        \repeatcell{5}{text=#1}                                                 \\
-        \hline
-        \pickoutxref{judge:1} & \pickoutxref{judge:2} & \pickoutxref{judge:3} &
-        \pickoutxref{judge:4} & \pickoutxref{judge:5}                           \\
-        \hline
-    \end{tabularx}
+    \makepickouttable{5}{judge}
 \end{sheetcontents}
 
 \makepart{单选题}{共~5~小题，每小题~2~分，共~10~分。}
 
-\cuzanswerdef{single:1}{A}
+\cuzanswerdef{single}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:1}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{短选项甲}
     {短选项乙}
     {短选项丙}
     {短选项丁}
 \end{problem}
 
-\cuzanswerdef{single:2}{B}
+\cuzanswerdef{single}{B}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:2}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{中等长度的选项甲}
     {中等长度的选项乙}
     {中等长度的选项丙}
     {中等长度的选项丁}
 \end{problem}
 
-\cuzanswerdef{single:3}{C}
+\cuzanswerdef{single}{C}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:3}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{一个特别特别长的需要分四行显示的选项甲}
     {一个特别特别长的需要分四行显示的选项乙}
     {一个特别特别长的需要分四行显示的选项丙}
     {一个特别特别长的需要分四行显示的选项丁}
 \end{problem}
 
-\cuzanswerdef{single:4}{A}
+\cuzanswerdef{single}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:4}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{短选项甲}
     {短选项乙}
     {短选项丙}
     {短选项丁}
 \end{problem}
 
-\cuzanswerdef{single:5}{B}
+\cuzanswerdef{single}{B}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:5}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{中等长度的选项甲}
     {中等长度的选项乙}
     {中等长度的选项丙}
     {中等长度的选项丁}
 \end{problem}
 
-\cuzanswerdef{single:6}{C}
+\cuzanswerdef{single}{C}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:6}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{一个特别特别长的需要分四行显示的选项甲}
     {一个特别特别长的需要分四行显示的选项乙}
     {一个特别特别长的需要分四行显示的选项丙}
     {一个特别特别长的需要分四行显示的选项丁}
 \end{problem}
 
-\cuzanswerdef{single:7}{A}
+\cuzanswerdef{single}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:7}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{短选项甲}
     {短选项乙}
     {短选项丙}
     {短选项丁}
 \end{problem}
 
-\cuzanswerdef{single:8}{B}
+\cuzanswerdef{single}{B}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:8}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{中等长度的选项甲}
     {中等长度的选项乙}
     {中等长度的选项丙}
     {中等长度的选项丁}
 \end{problem}
 
-\cuzanswerdef{single:9}{C}
+\cuzanswerdef{single}{C}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:9}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{一个特别特别长的需要分四行显示的选项甲}
     {一个特别特别长的需要分四行显示的选项乙}
     {一个特别特别长的需要分四行显示的选项丙}
     {一个特别特别长的需要分四行显示的选项丁}
 \end{problem}
 
-\cuzanswerdef{single:10}{A}
+\cuzanswerdef{single}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickoutref{single:10}
+    这是一个单选题，选啥看着办\pickoutref{single}
     \options{短选项甲}
     {短选项乙}
     {短选项丙}
@@ -175,57 +168,39 @@
 \end{problem}
 
 \begin{sheetcontents}
-    \begin{tabularx}{\textwidth}{|*{10}{X<{\centering}|}}
-        \hline
-        \repeatcell{5}{text=#1}                                                   \\
-        \hline
-        \pickoutxref{single:1} & \pickoutxref{single:2} & \pickoutxref{single:3}
-                               & \pickoutxref{single:4} & \pickoutxref{single:5}  \\
-        \hline
-        \repeatcell{5}{start=\lastvalue,text=#1}                                  \\
-        \hline
-        \pickoutxref{single:6} & \pickoutxref{single:7} & \pickoutxref{single:8}
-                               & \pickoutxref{single:9} & \pickoutxref{single:10} \\
-        \hline
-    \end{tabularx}
+    \makepickouttable{5}{single}
 \end{sheetcontents}
 
 \makepart{填空题}{共~5~空，每空~2~分，共~10~分。}
 
-\cuzanswerdef{blank:1}{待显示的答案}
+\cuzanswerdef{blank}{待显示的答案}
 \begin{problem}
-    这是一道填空题，空在这：\fillindexref{blank:1}。
+    这是一道填空题，空在这：\fillindexref{blank}。
 \end{problem}
 
-\cuzanswerdef{blank:2}{又一个待显示的答案}
-\cuzanswerdef{blank:3}{第三个待显示的答案}
+\cuzanswerdef{blank}{又一个待显示的答案}
+\cuzanswerdef{blank}{第三个待显示的答案}
 \begin{problem}
-    这又是一道填空题，一道题可以有任意多个空，如\fillindexref{blank:2}与
-    \fillindexref{blank:3}，序号会自动增加。
+    这又是一道填空题，一道题可以有任意多个空，如\fillindexref{blank}与
+    \fillindexref{blank}，序号会自动增加。
 \end{problem}
 
-\cuzanswerdef{blank:4}{\texttt{typename T}}
-\cuzanswerdef{blank:5}{\texttt{a + b}}
+\cuzanswerdef{blank}{\texttt{typename T}}
+\cuzanswerdef{blank}{\texttt{a + b}}
 \begin{problem}
     最后一道填空题了，来个程序填空吧：
     % \begin{minted}[escapeinside=@@]{cpp}
     \begin{cppcode}
-        template <@\fillindexref{blank:4}@>
+        template <@\fillindexref{blank}@>
         T add_two(T a, T b) {
-            return @\fillindexref{blank:5}@;
+            return @\fillindexref{blank}@;
         }
     \end{cppcode}
     % \end{minted}
 \end{problem}
 
 \begin{sheetcontents}
-    \begin{enumerate}[label=(\arabic*)]
-        \item \fillinxref{0.45}{blank:1}
-        \item \fillinxref{0.45}{blank:2}
-        \item \fillinxref{0.45}{blank:3}
-        \item \fillinxref{0.45}{blank:4}
-        \item \fillinxref{0.45}{blank:5}
-    \end{enumerate}
+    \makefillinlist{3}{blank}
 \end{sheetcontents}
 
 \makepart{简答题}{共~5~小题，每小题~4~分，共~20~分。}
@@ -291,7 +266,7 @@
 \end{studentanswer}
 
 \begin{problem}
-    第五道题的描述（如图\ref{fig:1}所示）。
+    第五道题的描述（如图~\ref{fig:1}~所示）。
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.7\textwidth]{cuzlogo}
