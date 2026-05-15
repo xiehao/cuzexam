@@ -33,8 +33,6 @@
 \cuzexamtype{考试}
 % 试卷类型，如：A/B
 \cuzpapertype{X}
-% 计分表中大题的数目
-\cuznumberparts{8}
 
 \begin{document}
 
@@ -47,150 +45,174 @@
 
 \makepart{判断题}{对的划\yes，错的划\no；共~5~小题，每小题~2~分，共~10~分。}
 
+\cuzanswerdef{judge:1}{\yes}
 \begin{problem}
-    这是一个正确的结论。\pickout{\yes}
+    这是一个正确的结论。\pickoutref{judge:1}
 \end{problem}
 
+\cuzanswerdef{judge:2}{\no}
 \begin{problem}
-    这是一个错误的结论。\pickout{\no}
+    这是一个错误的结论。\pickoutref{judge:2}
 \end{problem}
 
+\cuzanswerdef{judge:3}{\yes}
 \begin{problem}
-    这是一个正确的结论。\pickout{\yes}
+    这是一个正确的结论。\pickoutref{judge:3}
 \end{problem}
 
+\cuzanswerdef{judge:4}{\no}
 \begin{problem}
-    这是一个错误的结论。\pickout{\no}
+    这是一个错误的结论。\pickoutref{judge:4}
 \end{problem}
 
+\cuzanswerdef{judge:5}{\yes}
 \begin{problem}
-    这是一个正确的结论。\pickout{\yes}
+    这是一个正确的结论。\pickoutref{judge:5}
 \end{problem}
 
 % 用于在答题纸上生成对应区域，格式随意，此处画成表格
 \begin{sheetcontents}
     \begin{tabularx}{\textwidth}{|*{5}{X<{\centering}|}}
         \hline
-        \repeatcell{5}{text=#1} \\
+        \repeatcell{5}{text=#1}                                                 \\
         \hline
-        \pickoutx{\yes} & \pickoutx{\no} & \pickoutx{\yes} & \pickoutx{\no} & \pickoutx{\yes} \\
+        \pickoutxref{judge:1} & \pickoutxref{judge:2} & \pickoutxref{judge:3} &
+        \pickoutxref{judge:4} & \pickoutxref{judge:5}                           \\
         \hline
     \end{tabularx}
 \end{sheetcontents}
 
 \makepart{单选题}{共~5~小题，每小题~2~分，共~10~分。}
 
+\cuzanswerdef{single:1}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{A}
+    这是一个单选题，选啥看着办\pickoutref{single:1}
     \options{短选项甲}
-            {短选项乙}
-            {短选项丙}
-            {短选项丁}
+    {短选项乙}
+    {短选项丙}
+    {短选项丁}
 \end{problem}
 
+\cuzanswerdef{single:2}{B}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{B}
+    这是一个单选题，选啥看着办\pickoutref{single:2}
     \options{中等长度的选项甲}
-            {中等长度的选项乙}
-            {中等长度的选项丙}
-            {中等长度的选项丁}
+    {中等长度的选项乙}
+    {中等长度的选项丙}
+    {中等长度的选项丁}
 \end{problem}
 
+\cuzanswerdef{single:3}{C}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{C}
+    这是一个单选题，选啥看着办\pickoutref{single:3}
     \options{一个特别特别长的需要分四行显示的选项甲}
-            {一个特别特别长的需要分四行显示的选项乙}
-            {一个特别特别长的需要分四行显示的选项丙}
-            {一个特别特别长的需要分四行显示的选项丁}
+    {一个特别特别长的需要分四行显示的选项乙}
+    {一个特别特别长的需要分四行显示的选项丙}
+    {一个特别特别长的需要分四行显示的选项丁}
 \end{problem}
 
+\cuzanswerdef{single:4}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{A}
+    这是一个单选题，选啥看着办\pickoutref{single:4}
     \options{短选项甲}
-            {短选项乙}
-            {短选项丙}
-            {短选项丁}
+    {短选项乙}
+    {短选项丙}
+    {短选项丁}
 \end{problem}
 
+\cuzanswerdef{single:5}{B}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{B}
+    这是一个单选题，选啥看着办\pickoutref{single:5}
     \options{中等长度的选项甲}
-            {中等长度的选项乙}
-            {中等长度的选项丙}
-            {中等长度的选项丁}
+    {中等长度的选项乙}
+    {中等长度的选项丙}
+    {中等长度的选项丁}
 \end{problem}
 
+\cuzanswerdef{single:6}{C}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{C}
+    这是一个单选题，选啥看着办\pickoutref{single:6}
     \options{一个特别特别长的需要分四行显示的选项甲}
-            {一个特别特别长的需要分四行显示的选项乙}
-            {一个特别特别长的需要分四行显示的选项丙}
-            {一个特别特别长的需要分四行显示的选项丁}
+    {一个特别特别长的需要分四行显示的选项乙}
+    {一个特别特别长的需要分四行显示的选项丙}
+    {一个特别特别长的需要分四行显示的选项丁}
 \end{problem}
 
+\cuzanswerdef{single:7}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{A}
+    这是一个单选题，选啥看着办\pickoutref{single:7}
     \options{短选项甲}
-            {短选项乙}
-            {短选项丙}
-            {短选项丁}
+    {短选项乙}
+    {短选项丙}
+    {短选项丁}
 \end{problem}
 
+\cuzanswerdef{single:8}{B}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{B}
+    这是一个单选题，选啥看着办\pickoutref{single:8}
     \options{中等长度的选项甲}
-            {中等长度的选项乙}
-            {中等长度的选项丙}
-            {中等长度的选项丁}
+    {中等长度的选项乙}
+    {中等长度的选项丙}
+    {中等长度的选项丁}
 \end{problem}
 
+\cuzanswerdef{single:9}{C}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{C}
+    这是一个单选题，选啥看着办\pickoutref{single:9}
     \options{一个特别特别长的需要分四行显示的选项甲}
-            {一个特别特别长的需要分四行显示的选项乙}
-            {一个特别特别长的需要分四行显示的选项丙}
-            {一个特别特别长的需要分四行显示的选项丁}
+    {一个特别特别长的需要分四行显示的选项乙}
+    {一个特别特别长的需要分四行显示的选项丙}
+    {一个特别特别长的需要分四行显示的选项丁}
 \end{problem}
 
+\cuzanswerdef{single:10}{A}
 \begin{problem}
-    这是一个单选题，选啥看着办\pickout{A}
+    这是一个单选题，选啥看着办\pickoutref{single:10}
     \options{短选项甲}
-            {短选项乙}
-            {短选项丙}
-            {短选项丁}
+    {短选项乙}
+    {短选项丙}
+    {短选项丁}
 \end{problem}
 
 \begin{sheetcontents}
     \begin{tabularx}{\textwidth}{|*{10}{X<{\centering}|}}
         \hline
-        \repeatcell{5}{text=#1} \\
+        \repeatcell{5}{text=#1}                                                   \\
         \hline
-        \pickoutx{A} & \pickoutx{B} & \pickoutx{C} & \pickoutx{D} & \pickoutx{A} \\
+        \pickoutxref{single:1} & \pickoutxref{single:2} & \pickoutxref{single:3}
+                               & \pickoutxref{single:4} & \pickoutxref{single:5}  \\
         \hline
-        \repeatcell{5}{start=\lastvalue,text=#1} \\
+        \repeatcell{5}{start=\lastvalue,text=#1}                                  \\
         \hline
-        \pickoutx{A} & \pickoutx{B} & \pickoutx{C} & \pickoutx{D} & \pickoutx{A} \\
+        \pickoutxref{single:6} & \pickoutxref{single:7} & \pickoutxref{single:8}
+                               & \pickoutxref{single:9} & \pickoutxref{single:10} \\
         \hline
     \end{tabularx}
 \end{sheetcontents}
 
 \makepart{填空题}{共~5~空，每空~2~分，共~10~分。}
 
+\cuzanswerdef{blank:1}{待显示的答案}
 \begin{problem}
-    这是一道填空题，空在这：\fillindex{待显示的答案}。
+    这是一道填空题，空在这：\fillindexref{blank:1}。
 \end{problem}
 
+\cuzanswerdef{blank:2}{又一个待显示的答案}
+\cuzanswerdef{blank:3}{第三个待显示的答案}
 \begin{problem}
-    这又是一道填空题，一道题可以有任意多个空，如\fillindex{又一个待显示的答案}与\fillindex{第三个待显示的答案}，序号会自动增加。
+    这又是一道填空题，一道题可以有任意多个空，如\fillindexref{blank:2}与
+    \fillindexref{blank:3}，序号会自动增加。
 \end{problem}
 
+\cuzanswerdef{blank:4}{\texttt{typename T}}
+\cuzanswerdef{blank:5}{\texttt{a + b}}
 \begin{problem}
     最后一道填空题了，来个程序填空吧：
     % \begin{minted}[escapeinside=@@]{cpp}
     \begin{cppcode}
-        template <@\fillindex{\texttt{typename T}}@>
+        template <@\fillindexref{blank:4}@>
         T add_two(T a, T b) {
-            return @\fillindex{\texttt{a + b}}@;
+            return @\fillindexref{blank:5}@;
         }
     \end{cppcode}
     % \end{minted}
@@ -198,11 +220,11 @@
 
 \begin{sheetcontents}
     \begin{enumerate}[label=(\arabic*)]
-        \item \fillinx{0.45}{待显示的答案}
-        \item \fillinx{0.45}{又一个待显示的答案}
-        \item \fillinx{0.45}{第三个待显示的答案}
-        \item \fillinx{0.45}{\mintinline{cpp}{typename T}}
-        \item \fillinx{0.45}{\mintinline{cpp}{a + b}}
+        \item \fillinxref{0.45}{blank:1}
+        \item \fillinxref{0.45}{blank:2}
+        \item \fillinxref{0.45}{blank:3}
+        \item \fillinxref{0.45}{blank:4}
+        \item \fillinxref{0.45}{blank:5}
     \end{enumerate}
 \end{sheetcontents}
 

@@ -119,6 +119,34 @@
 
         \AtBeginEnvironment{tabularx}{\setcounter{repeatstart}{0}}
 
+        \prop_new:N \g__cuz_answers_prop
+
+        \msg_new:nnn { cuzexam } { duplicate-answer-key }
+        { Answer~key~'#1'~is~already~defined.\\Use~a~unique~key~for~\string\cuzanswerdef. }
+
+        \msg_new:nnn { cuzexam } { undefined-answer-key }
+        { Answer~key~'#1'~is~undefined.\\Define~it~first~with~\string\cuzanswerdef. }
+
+        \cs_new_protected:Nn \cuz_answer_def:nn
+        {
+            \prop_if_in:NnTF \g__cuz_answers_prop { #1 }
+            { \msg_error:nnn { cuzexam } { duplicate-answer-key } { #1 } }
+            { \prop_gput:Nnn \g__cuz_answers_prop { #1 } { #2 } }
+        }
+
+        \cs_new_protected:Nn \cuz_answer_ref:n
+        {
+            \prop_if_in:NnTF \g__cuz_answers_prop { #1 }
+            { \prop_item:Nn \g__cuz_answers_prop { #1 } }
+            { \msg_error:nnn { cuzexam } { undefined-answer-key } { #1 } }
+        }
+
+        \NewDocumentCommand{\cuzanswerdef}{mm}
+        { \cuz_answer_def:nn { #1 } { #2 } }
+
+        \NewDocumentCommand{\cuzanswerref}{m}
+        { \cuz_answer_ref:n { #1 } }
+
         \ExplSyntaxOff
 
         \newcommand{\cuzsubject}[1]{\def\cuz@subject{#1}}
@@ -130,28 +158,30 @@
         \newcommand{\cuzexamstage}[1]{\def\cuz@examstage{#1}}
         \newcommand{\cuzexamtype}[1]{\def\cuz@examtype{#1}}
         \newcommand{\cuzpapertype}[1]{\def\cuz@papertype{(#1)}}
-        \newcommand{\cuznumberparts}[1]{\setcounter{cuz@numberparts}{#1}}
+        \providecommand{\cuz@totalparts}{0}
+        \newcommand{\cuznumberparts}[1]{\gdef\cuz@totalparts{#1}}
 
         \newcommand{\underspace}[1]{\underline{\hspace{#1}}}
 
-        \newcounter{cuz@numberparts}
+        \newcounter{cuz@scoretableparts}
+        \newcounter{cuz@detectedparts}
 
         % 计分表制作
         \newcommand{\cuz@scoretable}{
             \newcounter{cuz@numbercolumns}
-            \setcounter{cuz@numbercolumns}{\value{cuz@numberparts}+3}
-            \begin{tabularx}{\textwidth}{|c|X|c|*{\thecuz@numberparts}{X<{\centering}|}}
+            \setcounter{cuz@numbercolumns}{\value{cuz@scoretableparts}+3}
+            \begin{tabularx}{\textwidth}{|c|X|c|*{\thecuz@scoretableparts}{X<{\centering}|}}
                 \hline
                 \multirow{3}{*}{总分}
                  & \multirow{2}{*}{}
                  & 题号
-                 & \repeatcell{\value{cuz@numberparts}}{text=\CJKnumber{##1}}
+                 & \repeatcell{\value{cuz@scoretableparts}}{text=\CJKnumber{##1}}
                 \\
                 \cline{3-\thecuz@numbercolumns}
                  &                                                            & \multirow{2}{*}{题分}
-                 & \eline{\value{cuz@numberparts}}
+                 & \eline{\value{cuz@scoretableparts}}
                 \\
-                 &                                                            &                     & \eline{\value{cuz@numberparts}}
+                 &                                                            &                     & \eline{\value{cuz@scoretableparts}}
                 \\
                 \hline
             \end{tabularx}
@@ -183,7 +213,9 @@
                     ~\quad~姓名~\xrfill[-0.5ex]{0.5pt}~学号
                     ~\xrfill[-0.5ex]{0.5pt}
                     \vspace{.5em}
-                    \ifthenelse{\thecuz@numberparts=0}{}{\cuz@scoretable}
+                    \ifnum\value{cuz@scoretableparts}>0\relax
+                        \cuz@scoretable
+                    \fi
                 \fi
                 \vspace{-2ex}
             \end{center}
@@ -223,6 +255,7 @@
         \newcounter{ifillin}
 
         \newcommand{\makepart}[2]{
+            \stepcounter{cuz@detectedparts}
             \setcounter{problem}{0}
             \setcounter{ifillin}{0}
             \stepcounter{section}
@@ -265,9 +298,21 @@
         \underline{\makebox[#1\textwidth][l]{\answer{#2}}}
     }
 
-    \newcommand{\fillindex}[1]{
+\newcommand{\fillindex}[1]{
     \stepcounter{ifillin}
     \hspace*{-1em}\underline{\hspace{0.5em}\ifanswer{#1}\else{(\arabic{ifillin})}\fi\hspace{0.5em}}\hspace*{-.5em}
+}
+
+\newcommand{\fillinref}[1]{
+    \fillin{\cuzanswerref{#1}}
+}
+
+\newcommand{\fillinxref}[2]{
+    \fillinx{#1}{\cuzanswerref{#2}}
+}
+
+\newcommand{\fillindexref}[1]{
+    \fillindex{\cuzanswerref{#1}}
 }
 
 \newcommand{\pickout}[1]{
@@ -276,6 +321,14 @@
 
 \newcommand{\pickoutx}[1]{
     \rule{0pt}{6ex}\raisebox{1.5ex}{\answer{#1~}}
+}
+
+\newcommand{\pickoutref}[1]{
+    \pickout{\cuzanswerref{#1}}
+}
+
+\newcommand{\pickoutxref}[1]{
+    \pickoutx{\cuzanswerref{#1}}
 }
 
 \newcommand{\ignorepars}{\@ifnextchar\par{\expandafter\ignorepars\@gobble}{}}
@@ -336,6 +389,7 @@
 \newcommand{\cuzvempty}[1]{\ifanswer\else\vspace*{#1}\fi}
 
 \AtBeginDocument{
+    \setcounter{cuz@scoretableparts}{\cuz@totalparts}
     \ifanswer
         \excludecomment{extracomment}
         \excludecomment{studentanswer}
@@ -353,6 +407,16 @@
         \excludecomment{sheetcontents}
         \excludecomment{studentanswer}
         \excludecomment{studentanswerx}
+    \fi
+}
+
+\AtEndDocument{
+    \immediate\write\@auxout{%
+        \string\gdef\string\cuz@totalparts{\arabic{cuz@detectedparts}}%
+    }
+    \ifnum\value{cuz@scoretableparts}=\value{cuz@detectedparts}\relax
+    \else
+        \ClassWarningNoLine{cuzexam}{Detected \arabic{cuz@detectedparts} parts. Rerun to update the header score table}%
     \fi
 }
 
