@@ -269,7 +269,7 @@
             { }
             {
                 \tl_put_right:Nx \l__cuz_answer_row_tl
-                { \exp_not:N \CJKnumber { \int_eval:n { #1 + ##1 - 1 } } }
+                { \int_eval:n { #1 + ##1 - 1 } }
             }
     }
 }
